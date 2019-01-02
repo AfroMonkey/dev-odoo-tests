@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="vehicle_form_view">
+        <field name="name">vehicle.form</field>
+        <field name="model">lgps.vehicle</field>
+        <field name="arch" type="xml">
+            <form string="Vehicle Form">
+                <sheet>
+                    <group>
+                        <group string="Vehicle Info">
+                            <separator/>
+                                <field name="name"/>
+                                <field name="client_id"/>
+                                <field name="status"/>
+                                <field name="gpsdevice_id"/>
+                                <field name="observations"/>
+                        </group>
+                        <group string="Attributes">
+                            <separator/>
+                                <field name="mark"/>
+                                <field name="model"/>
+                                <field name="category"/>
+                                <field name="year"/>
+                                <field name="color"/>
+                                <field name="plates"/>
+                        </group>
+                    </group>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="vehicle_search_view">
+        <field name="name">vehicle.search</field>
+        <field name="model">lgps.vehicle</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="mark"/>
+                <field name="client_id"/>
+                <field name="model"/>
+                <field name="category"/>
+                <field name="status"/>
+                <field name="gpsdevice_id"/>
+                <field name="year"/>
+                <field name="color"/>
+                <field name="plates"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="vehicle_tree_view">
+        <field name="name">vehicle.tree</field>
+        <field name="model">lgps.vehicle</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="mark"/>
+                <field name="client_id"/>
+                <field name="model"/>
+                <field name="category"/>
+                <field name="status"/>
+                <field name="gpsdevice_id"/>
+                <field name="year"/>
+                <field name="color"/>
+                <field name="plates"/>
+                <field name="observations"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="vehicle_list_action">
+        <field name="name">vehicles</field>
+        <field name="res_model">lgps.vehicle</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Create the first Gps Device</p>
+        </field>
+    </record>
+
+    <menuitem id="vehicles_menu" name="Vehicles" parent="configuration_menu" action="vehicle_list_action"/>
+</odoo>
