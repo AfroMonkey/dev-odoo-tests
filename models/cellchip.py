@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import api, models, fields
+from odoo import api, models, fields, _
 
 class Cellchip(models.Model):
     _inherit = ['mail.thread']
@@ -11,11 +11,12 @@ class Cellchip(models.Model):
     )
 
     status = fields.Selection(
-        selection=[("Activa","Activa"),
-            ("Baja","Baja"),
-            ("Suspendida","Suspendida"),
-            ("Reactivada","Reactivada"),
-            ("Reemplazada","Reemplazada")
+        selection=[
+            ("active", _("Active")),
+            ("drop", _("Drop")),
+            ("suspended", _("Suspended")),
+            ("reactivated", _("Reactivated")),
+            ("replaced", _("Replaced"))
         ],
         default="Activa",
         string="Status",
@@ -23,19 +24,19 @@ class Cellchip(models.Model):
 
     plan = fields.Selection(
         selection=[
-            ("20KB","20KB"),
-            ("100KB","100KB"),
-            ("1MB","1MB"),
-            ("2MB","2MB"),
-            ("3MB","3MB"),
-            ("5MB","5MB"),
-            ("10MB","10MB"),
-            ("100MB","100MB"),
-            ("500MB","500MB"),
-            ("1GB","1GB"),
-            ("3GB","3GB"),
-            ("5GB","5GB"),
-            ("10GB","10GB")
+            ("20KB", "20KB"),
+            ("100KB", "100KB"),
+            ("1MB", "1MB"),
+            ("2MB", "2MB"),
+            ("3MB", "3MB"),
+            ("5MB", "5MB"),
+            ("10MB", "10MB"),
+            ("100MB", "100MB"),
+            ("500MB", "500MB"),
+            ("1GB", "1GB"),
+            ("3GB", "3GB"),
+            ("5GB", "5GB"),
+            ("10GB", "10GB")
         ],
         string="Plan",
     )
@@ -65,13 +66,13 @@ class Cellchip(models.Model):
 
     provider = fields.Selection(
         selection=[
-            ("ATT","ATT"),
-            ("Cierto","Cierto"),
-            ("Iusacell","Iusacell"),
-            ("Movistar","Movistar"),
-            ("Prossea","Prossea"),
-            ("Sinpacsys","Sinpacsys"),
-            ("Telcel","Telcel")
+            ("ATT", "ATT"),
+            ("Cierto", "Cierto"),
+            ("Iusacell", "Iusacell"),
+            ("Movistar", "Movistar"),
+            ("Prossea", "Prossea"),
+            ("Sinpacsys", "Sinpacsys"),
+            ("Telcel", "Telcel")
         ],
         string="Provider",
     )

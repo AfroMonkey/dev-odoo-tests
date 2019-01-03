@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta
-from odoo import api, models, fields
+from odoo import api, models, fields, _
 import math
 import logging
 _logger = logging.getLogger(__name__)
@@ -52,24 +52,24 @@ class GpsDevice(models.Model):
 
     status = fields.Selection(
         selection=[
-        ("Baja", "Baja"),
-        ("Comodato", "Comodato"),
-        ("Cortesía", "Cortesía"),
-        ("Demo", "Demo"),
-        ("Desinstalado", "Desinstalado"),
-        ("Externo", "Externo"),
-        ("Hibernado", "Hibernado"),
-        ("Instalado", "Instalado"),
-        ("Inventario", "Inventario"),
-        ("Nuevo", "Nuevo"),
-        ("Por Instalar", "Por Instalar"),
-        ("Prestado", "Prestado"),
-        ("Pruebas", "Pruebas"),
-        ("Reemplazo", "Reemplazo"),
-        ("Respaldo", "Respaldo"),
-        ("Vendido", "Vendido")
+        ("drop", "Drop"),
+        ("comodato", _("Comodato")),
+        ("courtesy", _("Courtesy")),
+        ("demo", _("Demo")),
+        ("uninstalled", _("Uninstalled")),
+        ("external", _("External")),
+        ("hibernate", _("Hibernate")),
+        ("installed", _("Installed")),
+        ("inventory", _("Inventory")),
+        ("new", _("New")),
+        ("ready", _("Ready to Install")),
+        ("borrowed", _("Borrowed")),
+        ("tests", _("Tests")),
+        ("replacement", _("Replacement")),
+        ("backup", _("Backup")),
+        ("Sold", _("Sold"))
         ],
-        default="Inventario",
+        default="inventory",
         string="Status",
     )
 
@@ -112,12 +112,12 @@ class GpsDevice(models.Model):
 
     warranty_term = fields.Selection(
         selection=[
-            ("12 meses", "12 meses"),
-            ("18 meses", "18 meses"),
-            ("24 meses", "24 meses"),
-            ("36 meses", "36 meses")
+            ("12", _("12 months")),
+            ("18", _("18 months")),
+            ("24", _("24 months")),
+            ("36", _("36 months"))
         ],
-        default="12 meses",
+        default="12",
         string="Warranty Term",
     )
 
@@ -208,14 +208,21 @@ class GpsDevice(models.Model):
         string="Last Report",
         compute="_compute_last_report",
         store=True,
+        help="Time without reporting in platforms expressed in hours",
+    )
+
+    accessory_ids = fields.One2many(
+        comodel_name="lgps.accessory",
+        inverse_name="gpsdevice_id",
+        string="Accessories"
     )
 
     state = fields.Selection([
-        ('crear', 'Crear'),
-        ('asignar', 'Asignar'),
-        ('programar', 'Programar'),
-        ('pruebas', 'Programar'),
-        ('instalado', 'Instalado'),
+        ('crear', _('Crear')),
+        ('asignar', _('Asignar')),
+        ('programar', _('Programar')),
+        ('pruebas', _('Programar')),
+        ('instalado', _('Instalado')),
     ], default='crear')
 
     @api.one

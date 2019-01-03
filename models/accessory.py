@@ -33,7 +33,7 @@ class Accessory(models.Model):
 
     gpsdevice_id = fields.Many2one(
         comodel_name="lgps.gpsdevice",
-        required=True,
+        ondelete="cascade",
         string="Installed On",
         index=True,
     )

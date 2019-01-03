@@ -12,6 +12,7 @@
         'account',
     ],
     'data': [
+        'reports/devices.xml',
         'views/gpsdevice.xml',
         'views/cellchip.xml',
         'views/partner.xml',
