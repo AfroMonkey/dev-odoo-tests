@@ -153,7 +153,7 @@
         </field>
     </record>
 
-    <menuitem id="main_lgps_menu" name="Intralix" web_icon="GpsDevices,static/icon/lgps.png"/>
+    <menuitem id="main_lgps_menu" name="Intralix" web_icon="GpsDevices,static/description/icon.png"/>
     <menuitem id="lgps_menu" name="Lgps" parent="main_lgps_menu"/>
     <menuitem id="gps_devices_menu" name="Gps Devices" parent="lgps_menu" action="gpsdevice_list_action"/>
 </odoo>

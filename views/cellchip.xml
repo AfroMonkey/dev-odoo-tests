@@ -73,7 +73,7 @@
         </field>
     </record>
 
-    <menuitem id="main_lgps_menu" name="Intralix" web_icon="GpsDevices,static/icon/lgps.png"/>
+    <menuitem id="main_lgps_menu" name="Intralix" web_icon="GpsDevices,static/description/icon.png"/>
     <menuitem id="lgps_menu" name="Lgps" parent="main_lgps_menu"/>
     <menuitem id="cellchips_menu" name="Cellchips" parent="lgps_menu" action="cellchip_list_action"/>
 </odoo>
