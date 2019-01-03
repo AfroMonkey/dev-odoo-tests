@@ -244,7 +244,8 @@ class GpsDevice(models.Model):
             days = int(round(years * 365, 0))
             #_logger.info(days)
             start = fields.Date.from_string(self.warranty_start_date)
-            duration = timedelta(days=days, seconds=0)
+            #duration = timedelta(months=months)
+            duration = timedelta(days=days)
             #_logger.info(duration)
             self.warranty_end_date = start + duration
 
@@ -297,7 +298,15 @@ class GpsDevice(models.Model):
     # This function is triggered when the user clicks on the button 'Done'
     @api.one
     def instalado_progressbar(self):
-        self.log_note(self, "instalado")
+        self.message_post(body="instalado")
+
+        #list = self.env['lgps.cellchip'].search([
+#            ('status', '=' , 'Suspendida')
+#        ], limit=1)
+        # limit=1 devuelve una referencia al modelo
+        # limit > 1 devuelve una lista de referencias
+
+        #self.cellchip_id.name = "01928172"
         self.write({
             'state': 'instalado',
         })
